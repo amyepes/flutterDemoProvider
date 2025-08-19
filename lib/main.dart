@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loggy/loggy.dart';
+import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 import 'ui/pages/home.dart';
+import 'providers/color_provider.dart';
 
 void main() {
   Loggy.initLoggy(
@@ -10,15 +13,17 @@ void main() {
     ),
   );
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text("Basic state manager sample"),
-      ),
-      body: const SafeArea(
-        child: HomePage(),
-      ),
-    ),
-  ));
+  runApp(ChangeNotifierProvider(
+      create: (context) => CoolorProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("Basic state manager sample"),
+          ),
+          body: const SafeArea(
+            child: HomePage(),
+          ),
+        ),
+      )));
 }

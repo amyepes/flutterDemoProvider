@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/color_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class HomePage extends StatelessWidget {
                   key: const Key('ColorButton'),
                   onPressed: () {
                     // here we create the event
+                    context.read<CoolorProvider>().changeColor();
                   },
                   child: const Text('Change color (create event)')),
             ),
@@ -26,7 +30,7 @@ class HomePage extends StatelessWidget {
                 // state manager
                 child: Container(
                     key: const Key('ColorContainer'),
-                    color: Colors.blue,
+                    color: context.watch<CoolorProvider>().color,
                     child: const Center(
                         child: Text(
                             'This container will change color depending on the App state')))),
